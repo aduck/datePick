@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+<title>datePick</title>
+<link rel="stylesheet" href="datePick.css" />
+<link rel="stylesheet" href="ani.css" />
+</head>
+<body>
+<input type="text" readonly="true" placeholder="开始选择" onclick="datePop.open();" id="date_time" />
+
+<!--日期选择器-->
+<div class="tpl-fullpage" id="fullpage-datePick">
+	<div class="datePick" id="datePick">
+		<div class="datePick-title" id="datePick-title"></div>
+		<div class="clearfix">
+			<div class="datePick-boxs">
+				<span class="datePick-tag">年</span>
+				<div class="datePick-box">
+					<p class="cur_line"></p>
+					<ul class="datePick-items" id="datePick-year">
+						
+					</ul>
+				</div>
+			</div>
+			<div class="datePick-boxs">
+				<span class="datePick-tag">月</span>
+				<div class="datePick-box">
+					<p class="cur_line"></p>
+					<ul class="datePick-items" id="datePick-month">
+						
+					</ul>
+				</div>
+			</div>
+			<div class="datePick-boxs">
+				<span class="datePick-tag">日</span>
+				<div class="datePick-box">
+					<p class="cur_line"></p>
+					<ul class="datePick-items" id="datePick-day">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="datePick-btns">
+			<span class="datePick-btn" onclick="submit_callback();">确定</span>
+			<span class="datePick-btn" onclick="datePick.init();">今天</span>
+			<span class="datePick-btn" onclick="datePop.close();">取消</span>
+		</div>
+	</div>
+</div>
+<!-- scripts -->
+<script src="js/response.js"></script>
+<script src="js/pop.js"></script>
+<script src="js/tmAble.js"></script>
+<script src="js/datePick.js"></script>
+<script>  
+window.addEventListener('load',function(){
+	// 弹窗
+	window.datePop=Pop.create({
+		id:"datePick",
+		fullpage:document.getElementById('fullpage-datePick'),
+		closeAble:true,
+		beforeInit:function(){
+			var height=parseInt(this.elem.clientHeight);
+			this.elem.style.marginTop=-height/2+"px";
+		}
+	});
+	// 滚动
+	Array.prototype.slice.call(document.querySelectorAll('.datePick-items'),0).forEach(function(itembox){
+		TmAble.init(itembox,{
+			X:false,
+			endCallback:function(o){		
+				datePick.callback(itembox);
+			}
+		})
+	});
+
+	function submit_callback(){
+		var time_box=document.getElementById("date_time"),
+			_m=datePick.checkNum(datePick.result.month),
+			_d=datePick.checkNum(datePick.result.day);
+		time_box.value=datePick.result.year+"-"+_m+"-"+_d;
+		datePop.close();
+	}
+	window.submit_callback=submit_callback;
+},false);
+</script>	
+</body>
+</html>

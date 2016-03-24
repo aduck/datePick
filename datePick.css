@@ -1,0 +1,36 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	height:100%;
+}
+body{
+	font-size:1.1rem;
+	font-family:"Microsoft Yahei Light","Microsoft Yahei";
+}
+ul li{
+	list-style:none;
+}
+.clearfix:after{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.tpl-fullpage{height:100%;width:100%;position:fixed;top:0;left:0;z-index:99;background:rgba(0,0,0,.8);display:block;opacity:0;}
+.tpl-fullpage.ani{animation:fadeIn .5s;-webkit-animation:fadeIn .5s;}
+.datePick{border:1px solid #c2c2c2;background:#fff;position:absolute;left:50%;top:50%;width:23rem;margin-left:-11.5rem;border-radius:.5rem;box-sizing:border-box;}
+.datePick.ani{animation:zoomIn .5s;-webkit-animation:zoomIn .5s;}
+.datePick-title{color:#2abcd5;line-height:3.2rem;height:3.2rem;text-align:center;border-bottom:2px solid #2bbdd6;}
+.datePick-btns{border-top:1px solid #dbdbdb;text-align:center;}
+.datePick-btn{height:3.25rem;line-height:3.25rem;color:#000;font-size:1.2rem;float:left;width:33.3333333%;}
+.datePick-btn:nth-child(2){border:1px solid #eaeaea;border-top:none;border-bottom:none;box-sizing:border-box;}
+.datePick-boxs{width:33.3333333%;float:left;text-align:center;}
+.datePick-tag{color:#2cbcd4;height:2.5rem;line-height:2.5rem;display:block;}
+.datePick-box{height:150px;overflow:hidden;position:relative;}
+.datePick-items{position:relative;}
+.datePick-box li{height:30px;line-height:30px;color:#b2b2b2;width:3.9rem;margin:auto;}
+.datePick-box li.current{color:#000;}
+.cur_line{width:3.9rem;height:28px;left:50%;border-top:1px solid #2bbdd6;border-bottom:1px solid #2bbdd6;position:absolute;margin-left:-1.95rem;top:60px;}
